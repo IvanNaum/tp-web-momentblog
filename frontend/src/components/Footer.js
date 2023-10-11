@@ -1,6 +1,9 @@
 import { Container } from "react-bootstrap";
 
 const Footer = () => {
+
+  // TODO => Sticky Footers
+
   return (
     <>
       <footer class="fixed-bottom bg-body-tertiary p-3">

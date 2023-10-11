@@ -2,6 +2,9 @@ import { Navbar, Container } from "react-bootstrap";
 import UserManager from "./UserManager.js";
 
 const Header = () => {
+
+  //TODO => Sticky Header
+
   return (
     <>
       <Navbar expand="sm" className="bg-body-tertiary">

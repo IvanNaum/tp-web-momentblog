@@ -1,7 +1,8 @@
 // import logo from "./logo.svg";
 // import './App.css';
-import Header from "./components/Header/Header.js";
 import Footer from "./components/Footer.js";
+import Header from "./components/Header/Header.js";
+import GridPosts from "./components/Pages/Posts/GridPosts.js";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -12,7 +13,7 @@ function App() {
     <div class="app">
       <Header />
       <Container className="w-50">
-        <h1 className="text-center">Посты</h1>
+        <GridPosts />
       </Container>
       <Footer />
     </div>
