@@ -3,8 +3,8 @@
 import Footer from "./components/Footer.js";
 import Header from "./components/Header/Header.js";
 import GridPosts from "./components/Pages/Posts/GridPosts.js";
-import LoginPage from "./components/Login/LoginPage.js";
-import RegistrationPage from "./components/Login/RegistrationPage.js";
+import LoginPage from "./components/Pages/Login/LoginPage.js";
+import RegistrationPage from "./components/Pages/Login/RegistrationPage.js";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 

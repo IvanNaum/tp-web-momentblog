@@ -1,8 +1,9 @@
 import { Navbar, Container } from "react-bootstrap";
 import UserManager from "./UserManager.js";
+import BrowseSVG from "./img/browse.jsx";
+import NotificationSVG from "./img/notification.jsx";
 
 const Header = () => {
-
   //TODO => Sticky Header
 
   return (
@@ -12,11 +13,20 @@ const Header = () => {
           <Navbar.Brand href="#home">Momentblog</Navbar.Brand>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
-            <a className="mx-2" href="/search">
-              *Поиск*
+            <a
+              style={{ height: "25px" }}
+              className="mx-2 text-dark d-flex"
+              href="/search"
+            >
+              <BrowseSVG />
             </a>
-            <a className="mx-2" href="/notification">
-              *Уведомления*
+
+            <a
+              style={{ height: "25px" }}
+              className="mx-2 text-dark d-flex"
+              href="/notification"
+            >
+              <NotificationSVG />
             </a>
             <UserManager className="ms-2" />
             {/* <Navbar.Text>
