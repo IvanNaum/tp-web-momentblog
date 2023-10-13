@@ -2,7 +2,9 @@
 // import './App.css';
 import Footer from "./components/Footer.js";
 import Header from "./components/Header/Header.js";
-import GridPosts from "./components/Pages/Posts/GridPosts.js";
+
+import PostsPage from "./components/Pages/Posts/PostsPage.js";
+import Profile from "./components/Pages/Profile/Profile.js";
 import LoginPage from "./components/Pages/Login/LoginPage.js";
 import RegistrationPage from "./components/Pages/Login/RegistrationPage.js";
 
@@ -15,11 +17,12 @@ function App() {
     <div class="app">
       <Header />
       <Container className="w-50">
-        {/* <GridPosts /> */}
-        {/* <LoginPage /> */}
-        <RegistrationPage />
+        {/* <PostsPage /> */}
+        <LoginPage />
+        {/* <RegistrationPage /> */}
+        {/* <Profile/> */}
       </Container>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

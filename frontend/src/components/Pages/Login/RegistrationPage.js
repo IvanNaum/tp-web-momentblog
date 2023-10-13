@@ -45,7 +45,7 @@ const RegistrationPage = () => {
             variant="primary"
             type="submit"
           >
-            Войти
+            Зарегистрироваться 
           </Button>
         </div>
       </Form>

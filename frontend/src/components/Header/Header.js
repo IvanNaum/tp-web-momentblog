@@ -1,7 +1,6 @@
 import { Navbar, Container } from "react-bootstrap";
 import UserManager from "./UserManager.js";
 import BrowseSVG from "./img/browse.jsx";
-import NotificationSVG from "./img/notification.jsx";
 
 const Header = () => {
   //TODO => Sticky Header
@@ -21,17 +20,7 @@ const Header = () => {
               <BrowseSVG />
             </a>
 
-            <a
-              style={{ height: "25px" }}
-              className="mx-2 text-dark d-flex"
-              href="/notification"
-            >
-              <NotificationSVG />
-            </a>
             <UserManager className="ms-2" />
-            {/* <Navbar.Text>
-              Signed in as: <a href="#login">Mark Otto</a>
-            </Navbar.Text> */}
           </Navbar.Collapse>
         </Container>
       </Navbar>
