@@ -18,9 +18,9 @@ function App() {
       <Header />
       <Container className="w-50">
         {/* <PostsPage /> */}
-        <LoginPage />
+        {/* <LoginPage /> */}
         {/* <RegistrationPage /> */}
-        {/* <Profile/> */}
+        <Profile/>
       </Container>
       {/* <Footer /> */}
     </div>
