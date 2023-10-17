@@ -21,7 +21,7 @@ const Header = () => {
               <BrowseSVG />
             </a>
 
-            <UserManager className="ms-2" />
+            <UserManager className="ms-1" />
           </Navbar.Collapse>
         </Container>
       </Navbar>

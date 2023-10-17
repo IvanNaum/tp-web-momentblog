@@ -48,7 +48,7 @@ const Profile = () => {
         </Col>
       </Row>
 
-      <Row className="my-3 pb-2 text-center border-bottom">
+      <Row className="mt-3 mb-1 pb-2 text-center border-bottom">
         <Col>
           <h5 className="mb-0">{user_data.posts}</h5>
           posts
