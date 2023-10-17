@@ -35,7 +35,7 @@ const UserManager = (props) => {
   }
 
   return (
-    <div class={props.className}>
+    <div className={props.className}>
       {/* If user is not logged in */}
       <a href="/login">Войти</a>
       {/* else */}

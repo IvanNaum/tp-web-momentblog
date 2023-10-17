@@ -1,8 +1,8 @@
 import { Button, Col, Row } from "react-bootstrap";
-import SetttinsSVG from "./img/SettingsSVG.jsx";
 import GridPosts from "../GridPosts.js";
 import Post from "../Post.js";
-import POSTS from "../test_posts.js"
+import POSTS from "../test_posts.js";
+import SetttinsSVG from "./img/SettingsSVG.jsx";
 
 const Profile = () => {
   const user_data = {
@@ -28,9 +28,13 @@ const Profile = () => {
         <Col className="col-5  mt-3">
           <div className="d-flex fs-2">
             <div className="">@{user_data.username}</div>
-            <div style={{ width: "2rem", height: "2rem" }} className="ms-3">
+            <a
+              href="/settings"
+              style={{ width: "2rem", height: "2rem", cursor: "pointer" }}
+              className="text-dark ms-3"
+            >
               <SetttinsSVG />
-            </div>
+            </a>
           </div>
           <div className="my-2">
             <Button className="border w-100" variant="light" size="sm">
