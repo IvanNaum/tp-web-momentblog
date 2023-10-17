@@ -6,7 +6,7 @@ const GridPosts = (props) => {
     <>
       <Row md={2} lg={3}>
         {props.children.map((pst) => (
-          <Col className="mb-3">{pst}</Col>
+          <Col className="p-0">{pst}</Col>
         ))}
       </Row>
     </>

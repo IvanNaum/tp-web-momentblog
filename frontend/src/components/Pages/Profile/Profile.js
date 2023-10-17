@@ -1,6 +1,6 @@
 import { Button, Col, Row } from "react-bootstrap";
 import GridPosts from "../GridPosts.js";
-import Post from "../Post.js";
+import SquarePost from "../SquarePost.js";
 import POSTS from "../test_posts.js";
 import SetttinsSVG from "./img/SettingsSVG.jsx";
 
@@ -65,7 +65,11 @@ const Profile = () => {
 
       <GridPosts>
         {POSTS.map((pst) => (
-          <Post img_url={pst.img_url} username={pst.username} text={pst.text} />
+          <SquarePost
+            img_url={pst.img_url}
+            username={pst.username}
+            text={pst.text}
+          />
         ))}
       </GridPosts>
     </div>

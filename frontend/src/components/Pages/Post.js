@@ -3,8 +3,7 @@ import { Card, Button } from "react-bootstrap";
 const Post = (props) => {
   // TODO
   return (
-    <>
-      <Card bg="light">
+      <Card bg="light" className="m-2">
         <Card.Img
           style={{ height: "15em" }}
           variant="top"
@@ -19,7 +18,6 @@ const Post = (props) => {
           </Button>
         </Card.Body>
       </Card>
-    </>
   );
 };
 
