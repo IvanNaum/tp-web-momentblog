@@ -27,21 +27,21 @@ const RegistrationPage = () => {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="password1">
+        <Form.Group className="mb-2" controlId="password1">
           <Form.Label>Пароль</Form.Label>
           <Form.Control type="password" placeholder="Введите пароль..." />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="password2">
+        <Form.Group className="mb-2" controlId="password2">
           <Form.Label>Пароль ещё раз</Form.Label>
           <Form.Control
             type="password"
             placeholder="Введите пароль ещё раз..."
           />
         </Form.Group>
-        <div className="w-100">
+        <div className="w-100 my-3">
           <Button
-            className="d-block mx-auto w-25"
+            className="d-block mx-auto"
             variant="primary"
             type="submit"
           >

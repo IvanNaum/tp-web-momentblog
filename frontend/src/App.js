@@ -7,6 +7,7 @@ import PostsPage from "./components/Pages/Posts/PostsPage.js";
 import Profile from "./components/Pages/Profile/Profile.js";
 import LoginPage from "./components/Pages/Login/LoginPage.js";
 import RegistrationPage from "./components/Pages/Login/RegistrationPage.js";
+import AddPostPage from "./components/Pages/AddPost.js";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -20,7 +21,8 @@ function App() {
         {/* <PostsPage /> */}
         {/* <LoginPage /> */}
         {/* <RegistrationPage /> */}
-        <Profile />
+        {/* <Profile /> */}
+        <AddPostPage/>
       </Container>
       <Footer />
     </div>
