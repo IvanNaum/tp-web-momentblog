@@ -14,15 +14,15 @@ import { Container, Row, Col } from "react-bootstrap";
 
 function App() {
   return (
-    <div class="app">
+    <div className="min-vh-100 d-flex flex-column">
       <Header />
       <Container className="w-50">
         {/* <PostsPage /> */}
         {/* <LoginPage /> */}
         {/* <RegistrationPage /> */}
-        <Profile/>
+        <Profile />
       </Container>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

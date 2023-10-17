@@ -19,7 +19,7 @@ const UserManager = (props) => {
         <a
           style={{ height: "25px" }}
           className="mx-2 text-dark d-flex"
-          href="/profile"
+          href="/add_moment"
         >
           <PlusSVG />
         </a>

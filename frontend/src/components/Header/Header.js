@@ -7,9 +7,9 @@ const Header = () => {
 
   return (
     <>
-      <Navbar expand="sm" className="bg-body-tertiary">
+      <Navbar expand="sm" className="bg-body-tertiary sticky-top">
         <Container className="w-50">
-          <Navbar.Brand href="#home">Momentblog</Navbar.Brand>
+          <Navbar.Brand href="/home">Momentblog</Navbar.Brand>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
             <a
@@ -19,7 +19,7 @@ const Header = () => {
             >
               <BrowseSVG />
             </a>
-
+            
             <UserManager className="ms-2" />
           </Navbar.Collapse>
         </Container>
