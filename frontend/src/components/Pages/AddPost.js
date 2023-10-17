@@ -3,7 +3,7 @@ import { Container, Form, Button } from "react-bootstrap";
 const AddPostPage = () => {
   return (
     <Container className="d-flex flex-column align-items-center mt-5">
-      <h3>Добавить момент</h3>
+      <h2>Добавить момент</h2>
       <Form className="w-75">
         <Form.Group className="mb-2" controlId="description">
           <Form.Label>Описание</Form.Label>

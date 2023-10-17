@@ -3,7 +3,7 @@ import { Container, Form, Button } from "react-bootstrap";
 const LoginPage = () => {
   return (
     <Container className="d-flex flex-column align-items-center mt-5">
-      <h3>Авторизация</h3>
+      <h2>Авторизация</h2>
       <Form className="w-75">
         <Form.Group className="mb-2" controlId="email_nickname">
           <Form.Label>Email или nickname</Form.Label>

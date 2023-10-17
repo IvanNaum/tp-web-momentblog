@@ -3,7 +3,7 @@ import { Container, Form, Button, InputGroup } from "react-bootstrap";
 const RegistrationPage = () => {
   return (
     <Container className="d-flex flex-column align-items-center mt-5">
-      <h3>Регистрация</h3>
+      <h2>Регистрация</h2>
       <Form className="w-75">
         <Form.Group className="mb-2" controlId="email">
           <Form.Label>Email</Form.Label>
@@ -40,12 +40,8 @@ const RegistrationPage = () => {
           />
         </Form.Group>
         <div className="w-100 my-3">
-          <Button
-            className="d-block mx-auto"
-            variant="primary"
-            type="submit"
-          >
-            Зарегистрироваться 
+          <Button className="d-block mx-auto" variant="primary" type="submit">
+            Зарегистрироваться
           </Button>
         </div>
       </Form>
