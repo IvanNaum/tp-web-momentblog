@@ -5,12 +5,12 @@ const POSTS = [
     text: "Random image",
   },
   {
-    img_url: "https://random.imagecdn.app/300/350",
+    img_url: "https://random.imagecdn.app/320/350",
     username: "vasya",
     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus dolor, saepe tempora quas laudantium architecto quisquam omnis! Veniam esse sit dolorum, quas repudiandae asperiores dolores officiis tempore iure mollitia laudantium?",
   },
   {
-    img_url: "https://random.imagecdn.app/300/400",
+    img_url: "https://random.imagecdn.app/302/400",
     username: "konstantin",
     text: "Сегодня был в прекрсном месте, о чем я тут расскажу. Delectus dolor, saepe tempora quas laudantium architecto",
   },
