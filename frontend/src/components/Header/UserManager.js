@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import NotificationSVG from "./img/notification.jsx";
 import PlusSVG from "./img/plus.jsx";
@@ -24,20 +25,16 @@ const UserManager = (props) => {
     let classes = props.className + " d-flex";
     return (
       <div className={classes}>
-        <a
-          style={{ height: "25px" }}
-          className="mx-2 text-dark d-flex"
-          href="/notification"
-        >
-          <NotificationSVG />
-        </a>
-        <a
-          style={{ height: "25px" }}
-          className="mx-2 text-dark d-flex"
-          href="/add_moment"
-        >
-          <PlusSVG />
-        </a>
+        <Link to="/notification">
+          <div style={{ height: "25px" }} className="mx-2 text-dark d-flex">
+            <NotificationSVG />
+          </div>
+        </Link>
+        <Link to="/add_moment">
+          <div style={{ height: "25px" }} className="mx-2 text-dark d-flex">
+            <PlusSVG />
+          </div>
+        </Link>
 
         <Dropdown drop="down">
           <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
@@ -47,8 +44,12 @@ const UserManager = (props) => {
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Dropdown.Item href="/profile">Профиль</Dropdown.Item>
-            <Dropdown.Item href="/logout">Выйти</Dropdown.Item>
+            <Dropdown.Item>
+              <Link to="/profile">Профиль</Link>
+            </Dropdown.Item>
+            <Dropdown.Item>
+              <Link to="/logout">Выйти</Link>
+            </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </div>
