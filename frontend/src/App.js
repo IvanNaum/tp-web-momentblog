@@ -1,5 +1,6 @@
 import Footer from "./components/Footer.js";
 import Header from "./components/Header/Header.js";
+import Layout from "./components/Layout.js";
 
 import AddPostPage from "./components/Pages/AddPost.js";
 import LoginPage from "./components/Pages/Login/LoginPage.js";
@@ -12,29 +13,25 @@ import SearchPage from "./components/Pages/SearchPage.js";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { Container } from "react-bootstrap";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <div className="min-vh-100 d-flex flex-column">
-      <Header />
-      <Container className="w-50">
-        <Routes>
-          <Route path="/" element={<PostsPage />} />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<PostsPage />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="singup" element={<RegistrationPage />} />
+          <Route path="profile" element={<Profile />} />
 
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/singup" element={<RegistrationPage />} />
-          <Route path="/profile" element={<Profile />} />
-
-          <Route path="/search" element={<SearchPage />} />
-          <Route path="/notification" element={<NotificationPage />} />
-          <Route path="/add_moment" element={<AddPostPage />} />
+          <Route path="search" element={<SearchPage />} />
+          <Route path="notification" element={<NotificationPage />} />
+          <Route path="add_moment" element={<AddPostPage />} />
 
           <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </Container>
-      <Footer />
+        </Route>
+      </Routes>
     </div>
   );
 }
