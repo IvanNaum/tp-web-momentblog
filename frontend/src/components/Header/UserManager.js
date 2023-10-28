@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
-import NotificationSVG from "./img/notification.jsx";
-import PlusSVG from "./img/plus.jsx";
-import ProfileSVG from "./img/profile.jsx";
+import NotificationSVG from "../img/notification.jsx";
+import PlusSVG from "../img/plus.jsx";
+import ProfileSVG from "../img/profile.jsx";
 
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
   <a

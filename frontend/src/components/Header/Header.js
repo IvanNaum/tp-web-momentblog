@@ -1,7 +1,7 @@
 import { Container, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import UserManager from "./UserManager.js";
-import BrowseSVG from "./img/browse.jsx";
+import BrowseSVG from "../img/browse.jsx";
 
 const Header = () => {
   //TODO => Sticky Header
