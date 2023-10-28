@@ -1,12 +1,14 @@
 import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Comment from "../components/CommentBlock.js";
+import LikeBlock from "../components/LikeBlock.js";
 import POST from "./test_posts.js";
 
 const DetailPostPage = () => {
   const { id } = useParams();
 
   const post = POST[id - 1];
+  const post_likes = post.likes;
 
   return (
     <div className="my-3 h-100">
@@ -21,7 +23,10 @@ const DetailPostPage = () => {
         <Col>
           <h4>@{post.username}</h4>
           <div className="">{post.text}</div>
-          <hr />
+
+          <LikeBlock likes={post_likes} />
+
+          <hr className="my-3" />
           <div className="">
             <InputGroup className="mb-3" size="sm">
               <Form.Control size="sm" placeholder="Введите коментарий..." />

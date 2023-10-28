@@ -4,18 +4,21 @@ const POSTS = [
     img_url: "https://random.imagecdn.app/500/150",
     username: "ivan_naum",
     text: "Random image",
+    likes: 10,
   },
   {
     id: 2,
     img_url: "https://random.imagecdn.app/320/350",
     username: "vasya",
     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus dolor, saepe tempora quas laudantium architecto quisquam omnis! Veniam esse sit dolorum, quas repudiandae asperiores dolores officiis tempore iure mollitia laudantium?",
+    likes: 10,
   },
   {
     id: 3,
     img_url: "https://random.imagecdn.app/302/400",
     username: "konstantin",
     text: "Сегодня был в прекрсном месте, о чем я тут расскажу. Delectus dolor, saepe tempora quas laudantium architecto",
+    likes: 10,
   },
   {
     id: 4,
@@ -109,5 +112,13 @@ const POSTS = [
     text: "Поделюсь с вами фотографией моего обеда. Приятного аппетита! ",
   },
 ];
+
+const getRandomLikes = () => {
+  return Math.floor(Math.random() * 101); // Generating a random number between 0 and 100
+};
+
+for (let i = 0; i < POSTS.length; i++) {
+  POSTS[i].likes = getRandomLikes();
+}
 
 export default POSTS;
