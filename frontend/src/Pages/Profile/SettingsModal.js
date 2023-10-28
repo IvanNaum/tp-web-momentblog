@@ -3,7 +3,6 @@ import { ListGroup, Modal } from "react-bootstrap";
 const SettingsModal = (props) => {
   const show = props.show;
   const handleClose = props.handleClose;
-  const handleShow = props.handleShow;
 
   return (
     <Modal show={show} onHide={handleClose}>

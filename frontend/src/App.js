@@ -1,15 +1,15 @@
-import Footer from "./components/Footer.js";
-import Header from "./components/Header/Header.js";
 import Layout from "./components/Layout.js";
 
-import AddPostPage from "./components/Pages/AddPost.js";
-import LoginPage from "./components/Pages/Login/LoginPage.js";
-import RegistrationPage from "./components/Pages/Login/RegistrationPage.js";
-import NotFoundPage from "./components/Pages/NotFoundPage.js";
-import NotificationPage from "./components/Pages/NotificationPage.js";
-import PostsPage from "./components/Pages/Posts/PostsPage.js";
-import Profile from "./components/Pages/Profile/Profile.js";
-import SearchPage from "./components/Pages/SearchPage.js";
+import LoginPage from "./Pages/Login/LoginPage.js";
+import RegistrationPage from "./Pages/Login/RegistrationPage.js";
+
+import AddPostPage from "./Pages/AddPost.js";
+import DetailPostPage from "./Pages/DetailPostPage.js";
+import NotFoundPage from "./Pages/NotFoundPage.js";
+import NotificationPage from "./Pages/NotificationPage.js";
+import PostsPage from "./Pages/PostsPage.js";
+import Profile from "./Pages/Profile/Profile.js";
+import SearchPage from "./Pages/SearchPage.js";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -24,6 +24,8 @@ function App() {
           <Route path="login" element={<LoginPage />} />
           <Route path="singup" element={<RegistrationPage />} />
           <Route path="profile" element={<Profile />} />
+
+          <Route path="post/:id" element={<DetailPostPage />} />
 
           <Route path="search" element={<SearchPage />} />
           <Route path="notification" element={<NotificationPage />} />

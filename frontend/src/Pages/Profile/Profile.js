@@ -1,9 +1,9 @@
 import { Button, Col, Row } from "react-bootstrap";
-import GridPosts from "../GridPosts.js";
-import SquarePost from "../SquarePost.js";
+import GridPosts from "../../components/GridPosts.js";
+import SquarePost from "../../components/SquarePost.js";
 import POSTS from "../test_posts.js";
 import SettingsModal from "./SettingsModal.js";
-import SetttinsSVG from "./img/SettingsSVG.jsx";
+import SetttinsSVG from "../../components/img/SettingsSVG.jsx";
 import { useState } from "react";
 const Profile = () => {
   const [show_settings_modal, setShowSettingsModal] = useState(false);
@@ -78,6 +78,7 @@ const Profile = () => {
         <GridPosts>
           {POSTS.map((pst) => (
             <SquarePost
+              id={pst.id}
               img_url={pst.img_url}
               username={pst.username}
               text={pst.text}

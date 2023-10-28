@@ -1,5 +1,4 @@
-import { Container, Row, Col } from "react-bootstrap";
-import Post from "./Post.js";
+import { Col, Row } from "react-bootstrap";
 
 const GridPosts = (props) => {
   return (
