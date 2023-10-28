@@ -23,6 +23,18 @@ const AddPostPage = () => {
         onSubmit={handleSubmit}
         className="w-75"
       >
+        <Form.Group className="mb-2" controlId="title">
+          <Form.Label>Заголовок</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Введите заголовок..."
+            required
+          />
+          <Form.Control.Feedback type="invalid">
+            Введите корректный заголовок
+          </Form.Control.Feedback>
+        </Form.Group>
+
         <Form.Group className="mb-2" controlId="description">
           <Form.Label>Описание</Form.Label>
           <Form.Control

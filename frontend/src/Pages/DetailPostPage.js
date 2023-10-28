@@ -17,12 +17,14 @@ const DetailPostPage = () => {
           <img
             alt="Фотография"
             src={post.img_url}
+            style={{ height: "400px" }}
             className="object-fit-cover rounded w-100"
           />
         </Col>
         <Col>
-          <h4>@{post.username}</h4>
-          <div className="">{post.text}</div>
+          <h5 className="my-2">@{post.username}</h5>
+          <h4>{post.title}</h4>
+          <div className="">{post.description}</div>
 
           <LikeBlock likes={post_likes} />
 

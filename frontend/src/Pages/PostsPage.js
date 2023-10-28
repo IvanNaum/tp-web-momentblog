@@ -12,7 +12,7 @@ const PostsPage = () => {
             id={pst.id}
             img_url={pst.img_url}
             username={pst.username}
-            text={pst.text}
+            title={pst.title}
           />
         ))}
       </GridPosts>

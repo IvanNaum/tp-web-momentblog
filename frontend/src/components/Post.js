@@ -13,7 +13,7 @@ const Post = (props) => {
       />
       <Card.Body className="p-2">
         <Card.Title className="">@{props.username}</Card.Title>
-        <Card.Text className="text-truncate">{props.text}</Card.Text>
+        <Card.Text className="text-truncate">{props.title}</Card.Text>
         <Link to={`/post/${props.id}`}>
           <Button className="d-block w-100 text-center" variant="primary">
             Подробнее

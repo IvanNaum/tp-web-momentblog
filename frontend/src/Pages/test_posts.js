@@ -4,7 +4,7 @@ const POSTS = [
     img_url: "https://random.imagecdn.app/300/300",
     title: "Interesting Find",
     username: "adventurous_soul",
-    text: "Stumbled upon something amazing today!",
+    description: "Stumbled upon something amazing today!",
     likes: 25,
   },
   {
@@ -12,7 +12,7 @@ const POSTS = [
     img_url: "https://random.imagecdn.app/300/301",
     title: "Nature's Beauty",
     username: "wanderlust_lover",
-    text: "Caught this breathtaking view during my hike!",
+    description: "Caught this breathtaking view during my hike!",
     likes: 18,
   },
   {
@@ -20,7 +20,7 @@ const POSTS = [
     img_url: "https://random.imagecdn.app/301/300",
     title: "Favorite Recipe",
     username: "culinary_expert",
-    text: "Cooked up a storm in the kitchen today!",
+    description: "Cooked up a storm in the kitchen today!",
     likes: 12,
   },
   {
@@ -28,7 +28,7 @@ const POSTS = [
     img_url: "https://random.imagecdn.app/1200/300",
     title: "New Adventure Awaits",
     username: "explorer_mind",
-    text: "Planning my next thrilling expedition!",
+    description: "Planning my next thrilling expedition!",
     likes: 30,
   },
   {
@@ -36,7 +36,7 @@ const POSTS = [
     img_url: "https://random.imagecdn.app/500/500",
     title: "Artistic Inspiration",
     username: "creative_visionary",
-    text: "Found inspiration in the most unexpected place!",
+    description: "Found inspiration in the most unexpected place!",
     likes: 15,
   },
   {
@@ -44,7 +44,7 @@ const POSTS = [
     img_url: "https://random.imagecdn.app/300/1200",
     title: "Memories of the Past",
     username: "nostalgia_seeker",
-    text: "Reflecting on some cherished moments today.",
+    description: "Reflecting on some cherished moments today.",
     likes: 8,
   },
   {
@@ -52,7 +52,7 @@ const POSTS = [
     img_url: "https://random.imagecdn.app/399/305",
     title: "Fitness Journey",
     username: "health_fanatic",
-    text: "Making progress on my fitness goals!",
+    description: "Making progress on my fitness goals!",
     likes: 20,
   },
   {
@@ -60,7 +60,7 @@ const POSTS = [
     img_url: "https://random.imagecdn.app/500/550",
     title: "Tech Discoveries",
     username: "digital_nomad",
-    text: "Exciting tech finds from my travels!",
+    description: "Exciting tech finds from my travels!",
     likes: 14,
   },
   {
@@ -68,7 +68,7 @@ const POSTS = [
     img_url: "https://random.imagecdn.app/500/510",
     title: "Thoughts on Philosophy",
     username: "philosophy_buff",
-    text: "Contemplating the deeper questions of life.",
+    description: "Contemplating the deeper questions of life.",
     likes: 22,
   },
   {
@@ -76,7 +76,7 @@ const POSTS = [
     img_url: "https://random.imagecdn.app/311/300",
     title: "Fashion Frenzy",
     username: "trendy_style",
-    text: "Experimenting with some bold fashion choices!",
+    description: "Experimenting with some bold fashion choices!",
     likes: 17,
   },
   {
@@ -84,7 +84,7 @@ const POSTS = [
     img_url: "https://random.imagecdn.app/300/311",
     title: "Musical Exploration",
     username: "melody_seeker",
-    text: "Diving into a diverse range of musical genres.",
+    description: "Diving into a diverse range of musical genres.",
     likes: 19,
   },
   {
@@ -92,7 +92,7 @@ const POSTS = [
     img_url: "https://random.imagecdn.app/400/300",
     title: "Travel Chronicles",
     username: "globetrotter_life",
-    text: "Uncovering hidden gems on my latest journey!",
+    description: "Uncovering hidden gems on my latest journey!",
     likes: 24,
   },
   {
@@ -100,7 +100,7 @@ const POSTS = [
     img_url: "https://random.imagecdn.app/1920/1080",
     title: "Mindful Meditation",
     username: "inner_peace_seeker",
-    text: "Finding serenity through daily meditation practices.",
+    description: "Finding serenity through daily meditation practices.",
     likes: 11,
   },
 
@@ -109,7 +109,7 @@ const POSTS = [
     img_url: "https://random.imagecdn.app/1080/1920",
     title: "Literary Adventures",
     username: "bookworm_reader",
-    text: "Exploring new worlds through the pages of a book!",
+    description: "Exploring new worlds through the pages of a book!",
     likes: 16,
   },
   {
@@ -117,7 +117,7 @@ const POSTS = [
     img_url: "https://random.imagecdn.app/1080/1000",
     title: "Culinary Delights",
     username: "foodie_adventures",
-    text: "Indulging in some delightful culinary experiences!",
+    description: "Indulging in some delightful culinary experiences!",
     likes: 21,
   },
   {
@@ -125,7 +125,7 @@ const POSTS = [
     img_url: "https://random.imagecdn.app/435/435",
     title: "Travel Memories",
     username: "wanderlust_soul",
-    text: "Reminiscing about past adventures on the road!",
+    description: "Reminiscing about past adventures on the road!",
     likes: 27,
   },
   {
@@ -133,7 +133,7 @@ const POSTS = [
     img_url: "https://random.imagecdn.app/234/432",
     title: "Exploring the City",
     username: "urban_explorer",
-    text: "Discovering hidden gems in the heart of the city.",
+    description: "Discovering hidden gems in the heart of the city.",
     likes: 13,
   },
   {
@@ -141,7 +141,7 @@ const POSTS = [
     img_url: "https://random.imagecdn.app/353/412",
     title: "Fitness Goals Achieved",
     username: "fitness_junkie",
-    text: "Celebrating reaching my fitness milestones!",
+    description: "Celebrating reaching my fitness milestones!",
     likes: 29,
   },
   {
@@ -149,7 +149,7 @@ const POSTS = [
     img_url: "https://random.imagecdn.app/332/412",
     title: "Artistic Creations",
     username: "creative_mindset",
-    text: "Channeling creativity into stunning art pieces.",
+    description: "Channeling creativity into stunning art pieces.",
     likes: 26,
   },
   {
@@ -157,7 +157,7 @@ const POSTS = [
     img_url: "https://random.imagecdn.app/353/424",
     title: "Morning Reflections",
     username: "early_riser",
-    text: "Starting the day with mindful thoughts and gratitude.",
+    description: "Starting the day with mindful thoughts and gratitude.",
     likes: 23,
   },
   {
@@ -165,7 +165,7 @@ const POSTS = [
     img_url: "https://random.imagecdn.app/310/401",
     title: "Coding Adventures",
     username: "tech_enthusiast",
-    text: "Cracking complex codes and building innovative projects!",
+    description: "Cracking complex codes and building innovative projects!",
     likes: 28,
   },
   {
@@ -173,7 +173,7 @@ const POSTS = [
     img_url: "https://random.imagecdn.app/410/401",
     title: "Mountain Escapades",
     username: "peak_adventurer",
-    text: "Conquering new heights with every climb!",
+    description: "Conquering new heights with every climb!",
     likes: 31,
   },
   {
@@ -181,7 +181,7 @@ const POSTS = [
     img_url: "https://random.imagecdn.app/200/201",
     title: "Philosophical Musings",
     username: "deep_thinker",
-    text: "Contemplating the mysteries of existence.",
+    description: "Contemplating the mysteries of existence.",
     likes: 16,
   },
   {
@@ -189,7 +189,7 @@ const POSTS = [
     img_url: "https://random.imagecdn.app/500/301",
     title: "Stylish Moments",
     username: "fashionista_life",
-    text: "Elevating everyday looks with a touch of style!",
+    description: "Elevating everyday looks with a touch of style!",
     likes: 19,
   },
 ];
