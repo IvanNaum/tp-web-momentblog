@@ -1,10 +1,10 @@
+import { useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import GridPosts from "../../components/GridPosts.js";
 import SquarePost from "../../components/SquarePost.js";
 import POSTS from "../test_posts.js";
 import SettingsModal from "./SettingsModal.js";
-import SetttinsSVG from "../../components/img/SettingsSVG.jsx";
-import { useState } from "react";
+
 const Profile = () => {
   const [show_settings_modal, setShowSettingsModal] = useState(false);
 
@@ -35,13 +35,6 @@ const Profile = () => {
           <Col className="col-5  mt-3">
             <div className="d-flex fs-2">
               <div className="">@{user_data.username}</div>
-              <a
-                href="/settings"
-                style={{ width: "2rem", height: "2rem", cursor: "pointer" }}
-                className="text-dark ms-3"
-              >
-                <SetttinsSVG />
-              </a>
             </div>
             <div className="my-2">
               <Button
@@ -51,7 +44,7 @@ const Profile = () => {
                 size="sm"
               >
                 Редактировать профиль
-              </Button>{" "}
+              </Button>
             </div>
             <div className="mt-2">
               <h6>{user_data.name}</h6>

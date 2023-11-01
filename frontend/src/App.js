@@ -11,19 +11,32 @@ import PostsPage from "./Pages/PostsPage.js";
 import Profile from "./Pages/Profile/Profile.js";
 import SearchPage from "./Pages/SearchPage.js";
 
+import EditEmailModal from "./Pages/Profile/EditEmailModal.js";
+import EditNickModal from "./Pages/Profile/EditNickModal.js";
+import EditPhotoModal from "./Pages/Profile/EditPhotoModal.js";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 
 function App() {
+  const location = useLocation();
+  const background = location.state && location.state.background;
+
   return (
     <div className="min-vh-100 d-flex flex-column">
-      <Routes>
+      <Routes location={background || location}>
         <Route path="/" element={<Layout />}>
           <Route index element={<PostsPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="singup" element={<RegistrationPage />} />
-          <Route path="profile" element={<Profile />} />
+
+          <Route path="profile">
+            <Route index element={<Profile />} />
+            <Route path="edit_email" element={<EditEmailModal />} />
+            <Route path="edit_nickname" element={<EditNickModal />} />
+            <Route path="edit_photo" element={<EditPhotoModal />} />
+          </Route>
 
           <Route path="post/:id" element={<DetailPostPage />} />
 
@@ -34,6 +47,15 @@ function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
+      {background && (
+        <Routes>
+          <Route path="profile">
+            <Route path="edit_email" element={<EditEmailModal />} />
+            <Route path="edit_nickname" element={<EditNickModal />} />
+            <Route path="edit_photo" element={<EditPhotoModal />} />
+          </Route>
+        </Routes>
+      )}
     </div>
   );
 }
