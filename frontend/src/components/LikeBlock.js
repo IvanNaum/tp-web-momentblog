@@ -29,7 +29,7 @@ const LikeBlock = (props) => {
         <LikeSVG clicked={clicked_like} />
       </div>
       <div
-        className={min_likes ? "text-center" : "ms-2"}
+        className={min_likes ? "text-center" : "ms-2 d-flex align-items-center"}
         style={{ fontSize: "13px" }}
       >
         {likes} {!min_likes && like_word}
