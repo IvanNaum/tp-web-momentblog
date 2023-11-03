@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Comment from "../components/CommentBlock.js";
 import LikeBlock from "../components/LikeBlock.js";
 import POST from "./test_posts.js";
+import PostDescription from "../components/PostDescription.js";
 
 const DetailPostPage = () => {
   const { id } = useParams();
@@ -24,20 +25,20 @@ const DetailPostPage = () => {
         <Col>
           <h5 className="my-2">@{post.username}</h5>
           <h4>{post.title}</h4>
-          <div className="">{post.description}</div>
+          <PostDescription text={post.description} />
 
           <LikeBlock likes={post_likes} />
 
           <hr className="my-3" />
           <div className="">
             <InputGroup className="mb-3" size="sm">
-              <Form.Control size="sm" placeholder="Введите коментарий..." />
+              <Form.Control size="sm" placeholder="Введите комментарий..." />
               <Button variant="outline-secondary" id="search-btn">
                 Добавить
               </Button>
             </InputGroup>
             <div>
-              <Comment nickname="ivan_naum" text="Тестовый текст коментария" />
+              <Comment nickname="ivan_naum" text="Тестовый текст комментария" />
               <Comment nickname="__asd__" text="текст коментария 2" />
             </div>
           </div>

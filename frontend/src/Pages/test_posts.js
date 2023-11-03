@@ -4,7 +4,7 @@ const POSTS = [
     img_url: "https://random.imagecdn.app/300/300",
     title: "Interesting Find",
     username: "adventurous_soul",
-    description: "Stumbled upon something amazing today!",
+    description: "Stumbled upon #test_test something amazing today! #test",
     likes: 25,
   },
   {
@@ -12,7 +12,7 @@ const POSTS = [
     img_url: "https://random.imagecdn.app/300/301",
     title: "Nature's Beauty",
     username: "wanderlust_lover",
-    description: "Caught this breathtaking view during my hike!",
+    description: "Caught this breathtaking #test_hash view during my hike!",
     likes: 18,
   },
   {
@@ -20,7 +20,7 @@ const POSTS = [
     img_url: "https://random.imagecdn.app/301/300",
     title: "Favorite Recipe",
     username: "culinary_expert",
-    description: "Cooked up a storm in the kitchen today!",
+    description: "Cooked up a storm #test_hash2 in the kitchen today!",
     likes: 12,
   },
   {
