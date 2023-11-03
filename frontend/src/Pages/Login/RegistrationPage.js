@@ -25,13 +25,7 @@ const RegistrationPage = () => {
       >
         <Form.Group className="mb-2" controlId="email">
           <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Введите email..."
-            aria-describedby="email"
-            // TODO add email validator
-            required
-          />
+          <Form.Control type="email" placeholder="Введите email..." required />
           <Form.Control.Feedback type="invalid">
             Введите корректный email
           </Form.Control.Feedback>

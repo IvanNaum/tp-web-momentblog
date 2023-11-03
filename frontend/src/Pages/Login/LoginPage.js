@@ -29,7 +29,6 @@ const LoginPage = () => {
             type="text"
             placeholder="Введите email или nickname..."
             aria-describedby="email_nickname"
-            // pattern={validEmail}
             required
           />
           <Form.Control.Feedback type="invalid">

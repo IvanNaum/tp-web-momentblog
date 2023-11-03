@@ -11,7 +11,7 @@ const EditEmailModal = (props) => {
       <SettingsModalForm>
         <Form.Group className="mb-2" controlId="old_email">
           <Form.Label>Старый email</Form.Label>
-          <Form.Control type="text" placeholder="Введите email..." required />
+          <Form.Control type="email" placeholder="Введите email..." required />
           <Form.Control.Feedback type="invalid">
             Введите корректный email
           </Form.Control.Feedback>
@@ -19,7 +19,7 @@ const EditEmailModal = (props) => {
 
         <Form.Group className="mb-2" controlId="new_email">
           <Form.Label>Новый email</Form.Label>
-          <Form.Control type="text" placeholder="Введите email..." required />
+          <Form.Control type="email" placeholder="Введите email..." required />
           <Form.Control.Feedback type="invalid">
             Введите корректный email
           </Form.Control.Feedback>
