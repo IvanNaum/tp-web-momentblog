@@ -1,10 +1,12 @@
-import Layout from "./components/Layout.js";
+import { AuthProvider } from "./context/AuthContext.js";
+import PrivateOutlet from "./utils/PrivateOutlet.js";
 
-import LoginPage from "./Pages/Login/LoginPage.js";
-import RegistrationPage from "./Pages/Login/RegistrationPage.js";
+import Layout from "./components/Layout.js";
 
 import AddPostPage from "./Pages/AddPost.js";
 import DetailPostPage from "./Pages/DetailPostPage.js";
+import LoginPage from "./Pages/Login/LoginPage.js";
+import RegistrationPage from "./Pages/Login/RegistrationPage.js";
 import NotFoundPage from "./Pages/NotFoundPage.js";
 import NotificationPage from "./Pages/NotificationPage.js";
 import PostsPage from "./Pages/PostsPage.js";
@@ -26,33 +28,42 @@ function App() {
   return (
     <div className="min-vh-100 d-flex flex-column">
       <Routes location={background || location}>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<PostsPage />} />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="singup" element={<RegistrationPage />} />
+        <Route element={<AuthProvider />}>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<PostsPage />} />
 
-          <Route path="profile">
-            <Route index element={<Profile />} />
-            <Route path="edit_email" element={<EditEmailModal />} />
-            <Route path="edit_nickname" element={<EditNickModal />} />
-            <Route path="edit_photo" element={<EditPhotoModal />} />
+            <Route path="post/:id" element={<DetailPostPage />} />
+            <Route path="search" element={<SearchPage />} />
+
+            <Route element={<PrivateOutlet />}>
+              <Route path="profile" element={<PrivateOutlet />}>
+                <Route index element={<Profile />} />
+                <Route path="edit_email" element={<EditEmailModal />} />
+                <Route path="edit_nickname" element={<EditNickModal />} />
+                <Route path="edit_photo" element={<EditPhotoModal />} />
+              </Route>
+              <Route path="notification" element={<NotificationPage />} />
+              <Route path="add_moment" element={<AddPostPage />} />
+            </Route>
+
+
+            {/* TODO make only logouted user */}
+            <Route path="login" element={<LoginPage />} />
+            <Route path="singup" element={<RegistrationPage />} />
+
+            <Route path="*" element={<NotFoundPage />} />
           </Route>
-
-          <Route path="post/:id" element={<DetailPostPage />} />
-
-          <Route path="search" element={<SearchPage />} />
-          <Route path="notification" element={<NotificationPage />} />
-          <Route path="add_moment" element={<AddPostPage />} />
-
-          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
+
       {background && (
         <Routes>
-          <Route path="profile">
-            <Route path="edit_email" element={<EditEmailModal />} />
-            <Route path="edit_nickname" element={<EditNickModal />} />
-            <Route path="edit_photo" element={<EditPhotoModal />} />
+          <Route element={<AuthProvider />}>
+            <Route path="profile" element={<PrivateOutlet />}>
+              <Route path="edit_email" element={<EditEmailModal />} />
+              <Route path="edit_nickname" element={<EditNickModal />} />
+              <Route path="edit_photo" element={<EditPhotoModal />} />
+            </Route>
           </Route>
         </Routes>
       )}

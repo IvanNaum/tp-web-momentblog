@@ -1,6 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
 import { Dropdown } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import AuthContext from "../../context/AuthContext.js";
 import NotificationSVG from "../img/notification.jsx";
 import PlusSVG from "../img/plus.jsx";
 import ProfileSVG from "../img/profile.jsx";
@@ -19,9 +20,9 @@ const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
 ));
 
 const UserManager = (props) => {
-  let is_auntification = true;
+  let { user, logoutUser } = useContext(AuthContext);
 
-  if (is_auntification) {
+  if (user) {
     let classes = props.className + " d-flex";
     return (
       <div className={classes}>
@@ -48,7 +49,14 @@ const UserManager = (props) => {
               <Link to="/profile">Профиль</Link>
             </Dropdown.Item>
             <Dropdown.Item>
-              <Link to="/logout">Выйти</Link>
+              <a
+                onClick={(e) => {
+                  e.preventDefault();
+                  logoutUser();
+                }}
+              >
+                Выйти
+              </a>
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>

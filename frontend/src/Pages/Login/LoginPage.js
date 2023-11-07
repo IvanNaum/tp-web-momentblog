@@ -1,14 +1,19 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
+import AuthContext from "../../context/AuthContext";
 
 const LoginPage = () => {
+  let { loginUser } = useContext(AuthContext);
+
   const [validated, setValidated] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleLoginSubmit = (event) => {
+    event.preventDefault();
     const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
+
+    if (form.checkValidity() === true) {
+      setValidated(true);
+      loginUser(event);
     }
 
     setValidated(true);
@@ -20,7 +25,7 @@ const LoginPage = () => {
       <Form
         noValidate
         validated={validated}
-        onSubmit={handleSubmit}
+        onSubmit={handleLoginSubmit}
         className="w-75"
       >
         <Form.Group className="mb-2" controlId="email_nickname">
