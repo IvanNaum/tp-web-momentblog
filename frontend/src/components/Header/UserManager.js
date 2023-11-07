@@ -45,8 +45,10 @@ const UserManager = (props) => {
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Dropdown.Item>
-              <Link to="/profile">Профиль</Link>
+            <Dropdown.Item to="/profile">
+              <Link className="text-dark text-decoration-none" to="/profile">
+                Профиль
+              </Link>
             </Dropdown.Item>
             <Dropdown.Item>
               <a
