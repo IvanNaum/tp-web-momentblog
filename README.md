@@ -5,9 +5,19 @@
 
 [Задания](./tasks/README.md)
 
-## Для запуска
+## Для запуска react
 ```bash
 cd frontend
 npm install
 npm start
+```
+## Для запуска django
+```bash
+cd django
+python -m venv venv
+. ./venv/bin/activate
+pip install -r requirements.txt
+cd momentblog
+python manage.py migrate
+python manage.py runserver
 ```
