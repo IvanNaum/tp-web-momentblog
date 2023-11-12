@@ -1,10 +1,11 @@
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+from rest_framework import generics
+
+from blog.models import Moment
+from blog.pagination import MomentPagination
+from blog.serializers import ShortMomentSerializer
 
 
-@api_view(['GET'])
-def test(request):
-    data = {
-        "test": "test text"
-    }
-    return Response(data)
+class MomentList(generics.ListAPIView):
+    queryset = Moment.objects.all()
+    serializer_class = ShortMomentSerializer
+    pagination_class = MomentPagination

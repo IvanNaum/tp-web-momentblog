@@ -1,7 +1,7 @@
 from django.urls import path
 
-from .views import test
+from .views import MomentList
 
 urlpatterns = [
-    path('', test),
+    path('moments/', MomentList.as_view()),
 ]
