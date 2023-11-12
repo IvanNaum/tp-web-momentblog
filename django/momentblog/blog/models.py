@@ -1,3 +1,4 @@
+import re
 import uuid
 
 from django.contrib.auth import get_user_model
@@ -11,10 +12,26 @@ def moment_photo_dir_path(instance, filename):
     return f'moments/{instance.autor.get_username()}/{filename}'
 
 
+class MomentManager(models.Manager):
+    def save(self, *args, **kwargs):
+        moment = super().create(*args, **kwargs)
+
+        hashtags = re.findall(r'#[A-Za-zА-Яа-я0-9_]+', moment.description)
+        for ht in hashtags:
+            ht = ht.lstrip('#')
+            tag = Tag.objects.get_or_create(title=ht)[0]
+            # print(tag)
+            tag.moments.add(moment)
+        print('test')
+        return moment
+
+
 class Moment(models.Model):
     class Meta:
         verbose_name = "Момент"
         verbose_name_plural = "Моменты"
+
+    objects = MomentManager()
 
     title = models.CharField(max_length=128, verbose_name="Заголовок")
     description = models.TextField(verbose_name="Содержание")
@@ -26,7 +43,8 @@ class Moment(models.Model):
                                         auto_now_add=True)
 
     def __str__(self):
-        return f""
+        return f"Moment ({self.id})"
+
 
 class Comment(models.Model):
     class Meta:
@@ -43,9 +61,6 @@ class Comment(models.Model):
 
     created_date = models.DateTimeField(verbose_name="Дата создания",
                                         auto_now_add=True)
-
-    # def __str__(self):
-    #     return f"{self.autor.username} on {self.moment.title}"
 
 
 class Subscription(models.Model):
@@ -65,6 +80,9 @@ class Subscription(models.Model):
 
     created_date = models.DateTimeField(verbose_name="Дата подписки",
                                         auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.subscriber} -> {self.autor}"
 
 
 class Like(models.Model):
@@ -89,6 +107,9 @@ class CommentLike(Like):
     comment = models.ForeignKey("Comment", verbose_name="Комментарий",
                                 on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"Like Moment ({self.comment.id})"
+
 
 class MomentLike(Like):
     class Meta:
@@ -99,15 +120,18 @@ class MomentLike(Like):
     moment = models.ForeignKey("Moment", verbose_name="Момент",
                                on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"Like Moment ({self.moment.id})"
+
 
 class Tag(models.Model):
     class Meta:
         verbose_name = "Тег"
         verbose_name_plural = "Теги"
 
-    title = models.CharField(max_length=128, verbose_name="Текст")
+    title = models.CharField(max_length=128, verbose_name="Текст", unique=True)
 
-    moment = models.ManyToManyField("Moment", verbose_name="Момент")
+    moments = models.ManyToManyField("Moment", verbose_name="Момент")
 
     def __str__(self):
         return f"#{self.title}"

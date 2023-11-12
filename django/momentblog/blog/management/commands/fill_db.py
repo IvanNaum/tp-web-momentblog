@@ -9,7 +9,7 @@ from django.core.management.base import BaseCommand
 from faker import Faker
 
 from blog.models import (
-    Moment, Comment, Subscription, CommentLike, MomentLike, Tag
+    Moment, Comment, Subscription, CommentLike, MomentLike
 )
 from momentblog import settings
 
@@ -65,7 +65,6 @@ class Command(BaseCommand):
         print("Filling is started")
 
         self.fill_users_table()
-        self.fill_tags_table()
         self.fill_moments_table()
         self.fill_comments_table()
         self.fill_likes_table()
@@ -91,28 +90,26 @@ class Command(BaseCommand):
         self.users = get_user_model().objects.all()
         print(f'\t- added {ratio} users')
 
-    def fill_tags_table(self):
-        ratio = self.ratio * 10
-        for _ in range(ratio):
-            Tag.objects.create(**{
-                "title": '_'.join(
-                    self.fake.words(nb=random.randint(1, 3), unique=True)
-                ),
-            })
-
-        print(f'\t- added {ratio} tags')
-
     def fill_moments_table(self):
         ratio = self.ratio * 10
         for _ in range(ratio):
             user = random.choice(self.users)
             path = settings.BASE_DIR / f"media/moments/{user.get_username()}"
             path = download_new_photo(path)
+
+            description = self.fake.sentence(nb_words=15).split()
+            for _ in range(random.randint(1, 5)):
+                index = random.randrange(len(description))
+                if description[index].startswith("#"):
+                    continue
+
+                description[index] = f"#{description[index]}".lower()
+            description = ' '.join(description)
+
             with open(path, 'rb') as ph_file:
-                # TODO add tags to description
-                Moment.objects.create(**{
+                Moment.objects.get_or_create(**{
                     "title": self.fake.sentence(nb_words=5),
-                    "description": self.fake.sentence(nb_words=15),
+                    "description": description,
                     "autor": user,
                     "image": ImageFile(ph_file),
                 })
