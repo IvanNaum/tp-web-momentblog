@@ -14,6 +14,7 @@ def user_photo_dir_path(instance, filename):
 
 class MomentBlogUser(AbstractUser):
     username_validator = UnicodeUsernameValidator()
+    # TODO edited validator
 
     username = models.CharField(
         _("username"),
