@@ -17,12 +17,20 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework_simplejwt.views import TokenObtainPairView, \
-    TokenRefreshView
+from rest_framework_simplejwt.views import TokenRefreshView
+
+from user.token import TokenView
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
 
-    # Momentblog api
+    # JWT api
+    path('api/token/', TokenView.as_view(),
+         name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(),
+         name='token_refresh'),
+
+    # Momentblog API
     path('api/', include("blog.urls"), name='api'),
+
 ]
