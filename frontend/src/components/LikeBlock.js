@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState, useParams } from "react";
 import LikeSVG from "./img/LikeSVG.jsx";
 
 const getLikeWord = (likes) => {
@@ -13,15 +13,20 @@ const getLikeWord = (likes) => {
 
 const LikeBlock = (props) => {
   // TODO обрабатывать лайки с добавлением постфикса (11к, 432к)
-  const min_likes = props.min_likes || false;
+
   const [likes, setLikes] = useState(props.likes || 0);
+  // console.log(likes);
+  const [min_likes, setMinLikes] = useState(props.min_likes || false);
   const [clicked_like, setClickedLike] = useState(false);
+
+  useEffect(() => {
+    setLikes((likes) => props.likes);
+  }, []);
+
   const toggleLike = (event) => {
     setClickedLike(!clicked_like);
     clicked_like ? setLikes(likes - 1) : setLikes(likes + 1);
   };
-
-  let like_word = getLikeWord(likes);
 
   return (
     <div className={"my-2 d-flex text-center " + (min_likes && "flex-column")}>
@@ -32,7 +37,7 @@ const LikeBlock = (props) => {
         className={min_likes ? "text-center" : "ms-2 d-flex align-items-center"}
         style={{ fontSize: "13px" }}
       >
-        {likes} {!min_likes && like_word}
+        {likes} {!min_likes && getLikeWord(likes)}
       </div>
     </div>
   );

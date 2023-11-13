@@ -18,7 +18,6 @@ const PostsPage = () => {
       setLoading(false);
     };
 
-    console.log(posts.length, totalCount);
     if (
       loading &&
       ((posts.length == 0 && totalCount === 0) || posts.length < totalCount)

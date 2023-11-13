@@ -131,7 +131,7 @@ class Command(BaseCommand):
         print(f'\t- added {ratio} comments')
 
     def fill_likes_table(self):
-        ratio = self.ratio * 1000
+        ratio = self.ratio * 10 * self.ratio // 3
         for _ in range(ratio):
             user = random.choice(self.users)
             comment = random.choice(self.comments)

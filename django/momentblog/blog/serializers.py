@@ -13,8 +13,11 @@ class ShortMomentSerializer(serializers.ModelSerializer):
 
 class MomentSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source="autor.username", read_only=True)
+    likes = serializers.IntegerField(source="momentlike_set.count",
+                                     read_only=True)
+
 
     class Meta:
         model = Moment
         fields = ["username", "title", "description", "image",
-                  "created_date"]
+                  "created_date", "likes"]
