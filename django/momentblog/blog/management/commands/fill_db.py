@@ -17,7 +17,7 @@ from momentblog import settings
 def get_random_filename(length=10):
     chars = string.ascii_letters + string.digits
     random.seed = (os.urandom(1024))
-    return ''.join(random.choice(chars) for i in range(length))
+    return ''.join(random.choice(chars) for _ in range(length))
 
 
 def download_new_photo(path):
@@ -83,6 +83,8 @@ class Command(BaseCommand):
                 User.objects.create(**{
                     "username": username,
                     "email": self.fake.email(),
+                    "name": ' '.join(self.fake.words(nb=2)),
+                    "description": self.fake.sentence(nb_words=9),
                     "password": "simple",
                     "photo": ImageFile(ph_file)
                 })
@@ -131,16 +133,18 @@ class Command(BaseCommand):
         print(f'\t- added {ratio} comments')
 
     def fill_likes_table(self):
-        ratio = self.ratio * 10 * self.ratio // 3
+        ratio = self.ratio * 10 * self.ratio // 2
         for _ in range(ratio):
             user = random.choice(self.users)
             comment = random.choice(self.comments)
             CommentLike.objects.get_or_create(**{
-                # TODO
                 "autor": user,
                 "comment": comment,
             })
+        print(f'\t- added {ratio} likes for comments')
 
+        ratio = self.ratio * 10 * self.ratio // 3
+        for _ in range(ratio):
             user = random.choice(self.users)
             moment = random.choice(self.moments)
             MomentLike.objects.get_or_create(**{
@@ -149,7 +153,6 @@ class Command(BaseCommand):
                 "moment": moment,
             })
 
-        print(f'\t- added {ratio} likes for comments')
         print(f'\t- added {ratio} likes for moments')
 
     def fill_subscribers_table(self):
@@ -168,8 +171,8 @@ class Command(BaseCommand):
                 "subscriber": user2,
             })
 
-            if random.random() < 0.4:
-                # С вероятностью 40% подписка будет взаимной
+            if random.random() < 0.3:
+                # С вероятностью 30% подписка будет взаимной
                 Subscription.objects.get_or_create(**{
                     # TODO
                     "autor": user2,

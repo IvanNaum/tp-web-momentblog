@@ -1,9 +1,10 @@
+from django.contrib.auth import get_user_model
 from rest_framework.generics import RetrieveAPIView, ListAPIView
 
 from blog.models import Moment, Comment
 from blog.pagination import MomentPagination
 from blog.serializers import ShortMomentSerializer, MomentSerializer, \
-    CommentSerializer
+    CommentSerializer, UserSerializer
 
 
 class MomentList(ListAPIView):
@@ -23,3 +24,9 @@ class CommentList(ListAPIView):
     def get_queryset(self):
         moment_id = self.kwargs['moment_id']
         return Comment.objects.filter(moment__pk=moment_id)
+
+
+class UserDetail(RetrieveAPIView):
+    lookup_field = "pk"
+    queryset = get_user_model().objects.all()
+    serializer_class = UserSerializer

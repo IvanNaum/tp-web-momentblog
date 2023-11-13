@@ -38,8 +38,8 @@ class MomentBlogUser(AbstractUser):
                               upload_to=user_photo_dir_path,
                               blank=True, null=False)
 
-    first_name = None
-    last_name = None
+    name = models.CharField(max_length=50, blank=True, null=False)
+    description = models.CharField(max_length=250, blank=True, null=False)
 
     def __str__(self):
         return self.username
