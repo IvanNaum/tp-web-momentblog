@@ -8,6 +8,7 @@ import PostDescription from "../components/PostDescription.js";
 const DetailPostPage = () => {
   const { id } = useParams();
   const [post, setPost] = useState({});
+  const [comments, setComments] = useState([]);
   const [postLikes, setPostLikes] = useState(0);
   const [loaded, setLoaded] = useState(false);
 
@@ -19,8 +20,16 @@ const DetailPostPage = () => {
       setPostLikes(json.likes);
       setLoaded(true);
     };
+    const fetchComments = async () => {
+      const res = fetch(`/api/moments/${id}/comments`).then((res) =>
+        res.json()
+      );
+      const json = await res;
+      setComments(json.results);
+    };
 
     fetchMoment();
+    fetchComments();
   }, []);
 
   return (
@@ -39,7 +48,6 @@ const DetailPostPage = () => {
           <h4>{post.title}</h4>
           <PostDescription text={String(post.description)} />
 
-          {/* <LikeBlock likes={5} /> */}
           {loaded && <LikeBlock likes={postLikes} />}
 
           <hr className="my-3" />
@@ -50,9 +58,21 @@ const DetailPostPage = () => {
                 Добавить
               </Button>
             </InputGroup>
-            <div>
-              <Comment nickname="ivan_naum" text="Тестовый текст комментария" />
-              <Comment nickname="__asd__" text="текст коментария 2" />
+            <div
+             className="overflow-auto" 
+             style={{ height: "300px" }}
+            >
+              {comments.map((cmt) => (
+                <div 
+                className="me-2">
+                  <Comment
+                    nickname={cmt.username}
+                    text={cmt.text}
+                    likes={cmt.likes}
+                  />
+                  <hr className="my-1" />
+                </div>
+              ))}
             </div>
           </div>
         </Col>

@@ -25,7 +25,7 @@ export const AuthProvider = () => {
     event.preventDefault();
     console.log("Login form is submitted");
 
-    let response = await fetch("api/token/", {
+    let response = await fetch("/api/token/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -55,7 +55,7 @@ export const AuthProvider = () => {
   };
 
   let updateToken = async () => {
-    let response = await fetch("api/token/refresh/", {
+    let response = await fetch("/api/token/refresh/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
