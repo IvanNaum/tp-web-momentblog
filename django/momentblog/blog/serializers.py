@@ -40,7 +40,6 @@ class CommentSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    username = serializers.CharField(source="autor.username", read_only=True)
     moments = serializers.IntegerField(source="moment_set.count",
                                        read_only=True)
     subscribers = serializers.IntegerField(source="subscribers.count",
