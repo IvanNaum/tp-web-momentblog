@@ -33,7 +33,7 @@ const DetailPostPage = () => {
           <div className="">
             <InputGroup className="mb-3" size="sm">
               <Form.Control size="sm" placeholder="Введите комментарий..." />
-              <Button variant="outline-secondary" id="search-btn">
+              <Button type="submit" variant="outline-secondary" id="search-btn">
                 Добавить
               </Button>
             </InputGroup>

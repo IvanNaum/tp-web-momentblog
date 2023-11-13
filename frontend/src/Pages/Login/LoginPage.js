@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import { Button, Container, Form } from "react-bootstrap";
 import AuthContext from "../../context/AuthContext";
 
@@ -63,6 +64,7 @@ const LoginPage = () => {
           </Button>
         </div>
       </Form>
+      <Link to="/signup">Ещё нет аккаунта?</Link>
     </Container>
   );
 };

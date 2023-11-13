@@ -1,5 +1,6 @@
 import { Container, Form, Button, InputGroup } from "react-bootstrap";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const RegistrationPage = () => {
   const [validated, setValidated] = useState(false);
@@ -92,6 +93,7 @@ const RegistrationPage = () => {
           </Button>
         </div>
       </Form>
+      <Link to="/login">Уже есть аккаунт?</Link>
     </Container>
   );
 };

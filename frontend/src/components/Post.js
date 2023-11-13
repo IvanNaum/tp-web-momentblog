@@ -14,10 +14,11 @@ const Post = (props) => {
       <Card.Body className="p-2">
         <Card.Title className="">@{props.username}</Card.Title>
         <Card.Text className="text-truncate">{props.title}</Card.Text>
-        <Link to={`/post/${props.id}`}>
-          <Button className="d-block w-100 text-center" variant="primary">
-            Подробнее
-          </Button>
+        <Link
+          to={`/post/${props.id}`}
+          className="d-block w-100 text-center btn btn-primary"
+        >
+          Подробнее
         </Link>
       </Card.Body>
     </Card>

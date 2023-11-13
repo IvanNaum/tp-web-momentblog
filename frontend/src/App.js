@@ -49,7 +49,7 @@ function App() {
 
             {/* TODO make only logouted user */}
             <Route path="login" element={<LoginPage />} />
-            <Route path="singup" element={<RegistrationPage />} />
+            <Route path="signup" element={<RegistrationPage />} />
 
             <Route path="*" element={<NotFoundPage />} />
           </Route>

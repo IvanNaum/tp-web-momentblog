@@ -45,20 +45,17 @@ const UserManager = (props) => {
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Dropdown.Item to="/profile">
-              <Link className="text-dark text-decoration-none" to="/profile">
-                Профиль
-              </Link>
+            <Dropdown.Item as={Link} to="/profile">
+              Профиль
             </Dropdown.Item>
-            <Dropdown.Item>
-              <a
-                onClick={(e) => {
-                  e.preventDefault();
-                  logoutUser();
-                }}
-              >
-                Выйти
-              </a>
+
+            <Dropdown.Item
+              onClick={(e) => {
+                e.preventDefault();
+                logoutUser();
+              }}
+            >
+              Выйти
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
@@ -66,11 +63,19 @@ const UserManager = (props) => {
     );
   }
 
+  {
+    /* If user is not logged in */
+  }
   return (
     <div className={props.className}>
-      {/* If user is not logged in */}
-      <a href="/login">Войти</a>
-      {/* else */}
+      <div className="d-flex">
+        <div className="me-2">
+          <Link to="/login">Войти</Link>
+        </div>
+        <div className="">
+          <Link to="/signup">Зарегистрироваться</Link>
+        </div>
+      </div>
     </div>
   );
 };
