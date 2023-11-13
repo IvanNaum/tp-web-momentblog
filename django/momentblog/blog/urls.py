@@ -1,6 +1,7 @@
 from django.urls import path
 
-from .views import MomentList, MomentDetail, CommentList, UserDetail
+from .views import MomentList, MomentDetail, CommentList, UserDetail, \
+    MomentImageList
 
 urlpatterns = [
     path('moments/', MomentList.as_view()),
@@ -11,4 +12,5 @@ urlpatterns = [
 
     # path('profiles/', ... .as_view()),
     path('profiles/<pk>', UserDetail.as_view()),
+    path('profiles/<pk>/moments', MomentImageList.as_view()),
 ]

@@ -4,13 +4,22 @@ from rest_framework.generics import RetrieveAPIView, ListAPIView
 from blog.models import Moment, Comment
 from blog.pagination import MomentPagination
 from blog.serializers import ShortMomentSerializer, MomentSerializer, \
-    CommentSerializer, UserSerializer
+    CommentSerializer, UserSerializer, MomentImageSerializer
 
 
 class MomentList(ListAPIView):
     queryset = Moment.objects.all()
     serializer_class = ShortMomentSerializer
     pagination_class = MomentPagination
+
+
+class MomentImageList(ListAPIView):
+    serializer_class = MomentImageSerializer
+    pagination_class = MomentPagination
+
+    def get_queryset(self):
+        autor_id = self.kwargs['pk']
+        return Moment.objects.filter(autor__id=autor_id)
 
 
 class MomentDetail(RetrieveAPIView):

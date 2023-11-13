@@ -4,6 +4,12 @@ from rest_framework import serializers
 from blog.models import Moment, Comment
 
 
+class MomentImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Moment
+        fields = ['id', 'image']
+
+
 class ShortMomentSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source="autor.username", read_only=True)
 
