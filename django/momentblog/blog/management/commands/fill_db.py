@@ -1,6 +1,8 @@
 import os
 import random
 import string
+import threading
+from time import sleep
 
 import requests
 from django.contrib.auth import get_user_model
@@ -13,6 +15,7 @@ from blog.models import (
 )
 from momentblog import settings
 
+THREADS = 10
 
 def get_random_filename(length=10):
     chars = string.ascii_letters + string.digits
@@ -21,7 +24,15 @@ def get_random_filename(length=10):
 
 
 def download_new_photo(path):
-    req = requests.get("https://random.imagecdn.app/300/300", stream=True)
+    while True:
+        try:
+            req = requests.get("https://random.imagecdn.app/200/200",
+                               stream=True)
+            break
+        except requests.exceptions.ConnectionError:
+            sleep(1)
+            continue
+
     ext = 'png'
     filename = "%s.%s" % (get_random_filename(), ext)
     if not os.path.exists(path):
@@ -40,7 +51,6 @@ class Command(BaseCommand):
     users = get_user_model().objects.all()
     moments = Moment.objects.all()
     comments = Comment.objects.all()
-    ratio = 10000
 
     def handle(self, *args, **options):
         # login:    admin
@@ -50,8 +60,7 @@ class Command(BaseCommand):
                                                password="pbkdf2_sha256$600000$WyvsV01xWJFvRtWGsTAZ8V$xz9wx8qSuF7JCmHT/sgXXvMokBkZXrk8btU41WS0bcQ=",
                                                is_staff=True,
                                                is_superuser=True)
-        self.ratio = options['ratio']
-        self.fill_db()
+        self.multiple_threads_fill_db(options['ratio'])
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -61,20 +70,24 @@ class Command(BaseCommand):
             type=int
         )
 
-    def fill_db(self):
-        print("Filling is started")
+    def multiple_threads_fill_db(self, ratio):
+        count = ratio // THREADS
+        for index in range(THREADS):
+            def wrapper(rt):
+                print(f"- Started thread {index + 1}")
+                self.fill_db(rt)
 
-        self.fill_users_table()
-        self.fill_moments_table()
-        self.fill_comments_table()
-        self.fill_likes_table()
-        self.fill_subscribers_table()
+            x = threading.Thread(target=wrapper, args=(count,))
+            x.start()
 
-        print("Filling is finished")
+    def fill_db(self, ratio):
+        self.fill_users_table(ratio)
+        self.fill_moments_table(ratio * 10)
+        self.fill_comments_table(ratio * 100)
+        self.fill_likes_table(ratio * 10 * ratio // 2)
+        self.fill_subscribers_table(ratio * (ratio - 1) // 3)
 
-    def fill_users_table(self):
-        ratio = self.ratio
-
+    def fill_users_table(self, ratio):
         User = get_user_model()
         for _ in range(ratio):
             username = self.fake.profile()["username"]
@@ -92,8 +105,7 @@ class Command(BaseCommand):
         self.users = get_user_model().objects.all()
         print(f'\t- added {ratio} users')
 
-    def fill_moments_table(self):
-        ratio = self.ratio * 10
+    def fill_moments_table(self, ratio):
         for _ in range(ratio):
             user = random.choice(self.users)
             path = settings.BASE_DIR / f"media/moments/{user.get_username()}"
@@ -119,8 +131,7 @@ class Command(BaseCommand):
             self.moments = Moment.objects.all()
         print(f'\t- added {ratio} moments')
 
-    def fill_comments_table(self):
-        ratio = self.ratio * 100
+    def fill_comments_table(self, ratio):
         for _ in range(ratio):
             user = random.choice(self.users)
             moment = random.choice(self.moments)
@@ -132,8 +143,7 @@ class Command(BaseCommand):
         self.comments = Comment.objects.all()
         print(f'\t- added {ratio} comments')
 
-    def fill_likes_table(self):
-        ratio = self.ratio * 10 * self.ratio // 2
+    def fill_likes_table(self, ratio):
         for _ in range(ratio):
             user = random.choice(self.users)
             comment = random.choice(self.comments)
@@ -143,7 +153,6 @@ class Command(BaseCommand):
             })
         print(f'\t- added {ratio} likes for comments')
 
-        ratio = self.ratio * 10 * self.ratio // 3
         for _ in range(ratio):
             user = random.choice(self.users)
             moment = random.choice(self.moments)
@@ -155,9 +164,7 @@ class Command(BaseCommand):
 
         print(f'\t- added {ratio} likes for moments')
 
-    def fill_subscribers_table(self):
-        # TODO maybe change ratio?
-        ratio = self.ratio * (self.ratio - 1) // 3
+    def fill_subscribers_table(self, ratio):
         for _ in range(ratio):
             user1 = random.choice(self.users)
             user2 = random.choice(self.users)
