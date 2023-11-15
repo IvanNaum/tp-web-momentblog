@@ -28,6 +28,7 @@ class Moment(models.Model):
     class Meta:
         verbose_name = "Момент"
         verbose_name_plural = "Моменты"
+        ordering = ["-created_date"]
 
     objects = MomentManager()
 
@@ -48,6 +49,7 @@ class Comment(models.Model):
     class Meta:
         verbose_name = 'Комментарий'
         verbose_name_plural = "Комментарии"
+        ordering = ["created_date"]
 
     text = models.TextField(verbose_name="Содержание")
 
