@@ -13,16 +13,14 @@ def moment_photo_dir_path(instance, filename):
 
 
 class MomentManager(models.Manager):
-    def save(self, *args, **kwargs):
+    def create(self, *args, **kwargs):
         moment = super().create(*args, **kwargs)
 
         hashtags = re.findall(r'#[A-Za-zА-Яа-я0-9_]+', moment.description)
         for ht in hashtags:
             ht = ht.lstrip('#')
             tag = Tag.objects.get_or_create(title=ht)[0]
-            # print(tag)
             tag.moments.add(moment)
-        print('test')
         return moment
 
 
