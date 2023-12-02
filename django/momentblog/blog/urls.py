@@ -11,6 +11,6 @@ urlpatterns = [
     # path('moments/<moment_id>/comments/like', ... .as_view()),
 
     # path('profiles/', ... .as_view()),
-    path('profiles/<pk>', UserDetail.as_view()),
-    path('profiles/<pk>/moments', MomentImageList.as_view()),
+    path('profiles/<username>', UserDetail.as_view()),
+    path('profiles/<username>/moments', MomentImageList.as_view()),
 ]

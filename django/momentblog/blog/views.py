@@ -18,8 +18,8 @@ class MomentImageList(ListAPIView):
     pagination_class = MomentPagination
 
     def get_queryset(self):
-        autor_id = self.kwargs['pk']
-        return Moment.objects.filter(autor__id=autor_id)
+        autor_username = self.kwargs['username']
+        return Moment.objects.filter(autor__username=autor_username)
 
 
 class MomentDetail(RetrieveAPIView):
@@ -36,6 +36,6 @@ class CommentList(ListAPIView):
 
 
 class UserDetail(RetrieveAPIView):
-    lookup_field = "pk"
+    lookup_field = "username"
     queryset = get_user_model().objects.all()
     serializer_class = UserSerializer

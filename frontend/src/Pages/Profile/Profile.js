@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import GridPosts from "../../components/GridPosts.js";
 import SquarePost from "../../components/SquarePost.js";
+import AuthContext from "../../context/AuthContext";
 import SettingsModal from "./SettingsModal.js";
 
 const Profile = () => {
@@ -10,7 +11,7 @@ const Profile = () => {
   const handleCloseSettingsModal = () => setShowSettingsModal(false);
   const handleShowSettingsModal = () => setShowSettingsModal(true);
 
-  const id = 2;
+  const { user } = useContext(AuthContext);
   const [posts, setPosts] = useState([]);
   const [profile, setProfile] = useState({});
   const [totalCount, setTotalCount] = useState(0);
@@ -19,7 +20,9 @@ const Profile = () => {
 
   useEffect(() => {
     const fetchProfile = async () => {
-      const res = fetch(`/api/profiles/${id}`).then((res) => res.json());
+      const res = fetch(`/api/profiles/${user.username}`).then((res) =>
+        res.json()
+      );
       const json = await res;
       setProfile(() => json);
     };
@@ -31,9 +34,9 @@ const Profile = () => {
   useEffect(() => {
     const fetchMoments = async () => {
       setLoading(true);
-      const res = fetch(`/api/profiles/${id}/moments?page=${page}`).then(
-        (res) => res.json()
-      );
+      const res = fetch(
+        `/api/profiles/${user.username}/moments?page=${page}`
+      ).then((res) => res.json());
       const json = await res;
       setPosts((posts) => [...posts, ...json.results]);
       setTotalCount(json.count);
@@ -48,9 +51,8 @@ const Profile = () => {
     return () => {
       if (
         loading &&
-        ((posts.length == 0 && totalCount === 0) || posts.length < totalCount)
+        (!(posts.length === 0 && totalCount === 0) || posts.length < totalCount)
       ) {
-        // setLoading(false);
         fetchMoments();
       }
     };
@@ -78,11 +80,15 @@ const Profile = () => {
     <>
       <div className="mt-2">
         <Row className="align-items-start justify-content-start">
-          <Col className="col-4">
+          <Col
+            className="col-4 rounded-circle overflow-hidden p-0"
+            style={{ aspectRatio: 1 }}
+          >
             <img
-              className="rounded-circle w-100"
+              className=" w-100"
+              style={{ position: "relative", top: "-25%" }}
               src={profile.photo}
-              alt="Фотография"
+              alt="Фотография не найдена"
             />
           </Col>
           <Col className="col-5  mt-3">
@@ -108,16 +114,16 @@ const Profile = () => {
 
         <Row className="mt-3 mb-1 pb-2 text-center border-bottom">
           <Col>
-            <h5 className="mb-0">{profile.posts}</h5>
-            posts
+            <h5 className="mb-0">{profile.moments}</h5>
+            moments
           </Col>
           <Col>
-            <h5 className="mb-0">{profile.following}</h5>
-            following
+            <h5 className="mb-0">{profile.subscribers}</h5>
+            subscribers
           </Col>
           <Col>
-            <h5 className="mb-0">{profile.follows}</h5>
-            follows
+            <h5 className="mb-0">{profile.subscriptions}</h5>
+            subscriptions
           </Col>
         </Row>
 

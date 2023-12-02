@@ -12,7 +12,7 @@ const Post = (props) => {
         className="object-fit-cover"
       />
       <Card.Body className="p-2">
-        <Card.Title className="">@{props.username}</Card.Title>
+        <Card.Title className="text-truncate">@{props.username}</Card.Title>
         <Card.Text className="text-truncate">{props.title}</Card.Text>
         <Link
           to={`/post/${props.id}`}

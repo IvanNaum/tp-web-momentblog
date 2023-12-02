@@ -63,9 +63,7 @@ const UserManager = (props) => {
     );
   }
 
-  {
-    /* If user is not logged in */
-  }
+  /* If user is not logged in */
   return (
     <div className={props.className}>
       <div className="d-flex">
