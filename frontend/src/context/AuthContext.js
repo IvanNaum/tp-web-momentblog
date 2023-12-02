@@ -23,7 +23,6 @@ export const AuthProvider = () => {
 
   let loginUser = async (event) => {
     event.preventDefault();
-    console.log("Login form is submitted");
 
     let response = await fetch("/api/token/", {
       method: "POST",
@@ -79,7 +78,6 @@ export const AuthProvider = () => {
   useEffect(() => {
     let upd_interval = setInterval(() => {
       if (authTokens) {
-        console.log("upd token");
         updateToken();
       }
     }, 4 * 60 * 1000); // 4 mins

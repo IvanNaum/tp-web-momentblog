@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import GridPosts from "../../components/GridPosts.js";
 import SquarePost from "../../components/SquarePost.js";
-import POSTS from "../test_posts.js";
 import SettingsModal from "./SettingsModal.js";
 
 const Profile = () => {
@@ -11,14 +10,68 @@ const Profile = () => {
   const handleCloseSettingsModal = () => setShowSettingsModal(false);
   const handleShowSettingsModal = () => setShowSettingsModal(true);
 
-  const user_data = {
-    username: "ivan_naum",
-    img_url: "https://random.imagecdn.app/400/400",
-    name: "Ivan Naumov",
-    description: "Это тестовое описание профиля",
-    posts: POSTS.length,
-    following: 174,
-    follows: 534,
+  const id = 2;
+  const [posts, setPosts] = useState([]);
+  const [profile, setProfile] = useState({});
+  const [totalCount, setTotalCount] = useState(0);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const res = fetch(`/api/profiles/${id}`).then((res) => res.json());
+      const json = await res;
+      setProfile(() => json);
+    };
+    return () => {
+      fetchProfile();
+    };
+  }, []);
+
+  useEffect(() => {
+    const fetchMoments = async () => {
+      setLoading(true);
+      const res = fetch(`/api/profiles/${id}/moments?page=${page}`).then(
+        (res) => res.json()
+      );
+      const json = await res;
+      setPosts((posts) => [...posts, ...json.results]);
+      setTotalCount(json.count);
+      setPage((page) => page + 1);
+
+      setLoading(false);
+    };
+
+    console.log("trigger effect");
+    console.log(posts.length, totalCount, loading);
+
+    return () => {
+      if (
+        loading &&
+        ((posts.length == 0 && totalCount === 0) || posts.length < totalCount)
+      ) {
+        // setLoading(false);
+        fetchMoments();
+      }
+    };
+  }, [loading]);
+
+  useEffect(() => {
+    document.addEventListener("scroll", scrollHandler);
+    return function () {
+      document.removeEventListener("scroll", scrollHandler);
+    };
+  }, [totalCount]);
+
+  const scrollHandler = (e) => {
+    const scroll_h = e.target.documentElement.scrollHeight;
+    const scroll_t = e.target.documentElement.scrollTop;
+    const inner_h = window.innerHeight;
+
+    if (scroll_h - (scroll_t + inner_h) < 1000) {
+      console.log("trigger");
+      setLoading(true);
+    }
   };
 
   return (
@@ -28,13 +81,13 @@ const Profile = () => {
           <Col className="col-4">
             <img
               className="rounded-circle w-100"
-              src={user_data.img_url}
+              src={profile.photo}
               alt="Фотография"
             />
           </Col>
           <Col className="col-5  mt-3">
             <div className="d-flex fs-2">
-              <div className="">@{user_data.username}</div>
+              <div className="">@{profile.username}</div>
             </div>
             <div className="my-2">
               <Button
@@ -47,35 +100,30 @@ const Profile = () => {
               </Button>
             </div>
             <div className="mt-2">
-              <h6>{user_data.name}</h6>
-              <span>{user_data.description}</span>
+              <h6>{profile.name}</h6>
+              <span>{profile.description}</span>
             </div>
           </Col>
         </Row>
 
         <Row className="mt-3 mb-1 pb-2 text-center border-bottom">
           <Col>
-            <h5 className="mb-0">{user_data.posts}</h5>
+            <h5 className="mb-0">{profile.posts}</h5>
             posts
           </Col>
           <Col>
-            <h5 className="mb-0">{user_data.following}</h5>
+            <h5 className="mb-0">{profile.following}</h5>
             following
           </Col>
           <Col>
-            <h5 className="mb-0">{user_data.follows}</h5>
+            <h5 className="mb-0">{profile.follows}</h5>
             follows
           </Col>
         </Row>
 
         <GridPosts>
-          {POSTS.map((pst) => (
-            <SquarePost
-              id={pst.id}
-              img_url={pst.img_url}
-              username={pst.username}
-              text={pst.text}
-            />
+          {posts.map((pst) => (
+            <SquarePost id={pst.id} img_url={pst.image} />
           ))}
         </GridPosts>
       </div>
