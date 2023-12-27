@@ -32,5 +32,5 @@ python manage.py runserver
 ```
 
 ## Для dump
-1. Скачать данные
+1. [Скачать данные](https://drive.google.com/drive/folders/1Hvc9s-vg2BO0BIPbrFGcQZJktJSmEmTn?usp=sharing)
 1. ```psql -U user_pg momentblog < dbexport.pgsql```
