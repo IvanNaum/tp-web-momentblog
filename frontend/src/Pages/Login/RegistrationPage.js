@@ -10,14 +10,15 @@ const RegistrationPage = () => {
   const [validated, setValidated] = useState(false);
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
+
+    if (form.checkValidity() === true) {
+      setValidated(true);
+      registerUser(event);
     }
 
     setValidated(true);
-    registerUser(event);
   };
 
   return (

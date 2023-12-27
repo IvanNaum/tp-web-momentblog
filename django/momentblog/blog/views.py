@@ -11,20 +11,14 @@ from blog.serializers import ShortMomentSerializer, MomentSerializer, \
 
 
 class MomentCreate(APIView):
-
     def post(self, request, format='json'):
-        serializer = MomentSerializer(data=request.data)
+        serializer = MomentSerializer(data=request.data, )
         if serializer.is_valid():
-            user = serializer.save()
-            if user:
+            moment = serializer.save(autor=request.user)
+            if moment:
                 return Response(status=status.HTTP_200_OK)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-# class MomentCreate(CreateAPIView):
-#     queryset = Moment.objects.all()
-#     serializer_class = MomentSerializer
 
 
 class MomentList(ListAPIView):

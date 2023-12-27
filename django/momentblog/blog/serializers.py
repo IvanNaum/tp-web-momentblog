@@ -28,6 +28,15 @@ class MomentSerializer(serializers.ModelSerializer):
         fields = ["username", "title", "description", "image",
                   "created_date", "likes"]
 
+    def create(self, validated_data):
+        moment = Moment.objects.create(
+            title=validated_data['title'],
+            description=validated_data['description'],
+            autor=validated_data['autor'],
+            image=validated_data['image'],
+        )
+        return moment
+
 
 class CommentSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source="autor.username", read_only=True)

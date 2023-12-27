@@ -1,14 +1,41 @@
 import { Container, Form, Button } from "react-bootstrap";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddPostPage = () => {
+  const navigate = useNavigate();
   const [validated, setValidated] = useState(false);
 
+  const addPost = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append("title", event.target.title.value);
+    formData.append("description", event.target.description.value);
+    formData.append("image", event.target.imagefile.files[0]);
+
+    let token = JSON.parse(localStorage.getItem("authTokens"));
+
+    let response = await fetch("/api/moments/create", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token.access}`,
+      },
+      body: formData,
+    });
+
+    if (response.status === 200) {
+      navigate("/profile");
+    }
+  };
+
   const handleSubmit = (event) => {
+    event.preventDefault();
     const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
+
+    if (form.checkValidity() === true) {
+      setValidated(true);
+      addPost(event);
     }
 
     setValidated(true);

@@ -1,10 +1,25 @@
+import { useState } from "react";
 import { Form, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import SettingsModalForm from "../../components/SettingsModalForm.js";
 
 const EditEmailModal = (props) => {
   const navigate = useNavigate();
+  const [validated, setValidated] = useState(false);
 
+  const handleLoginSubmit = (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+
+    if (form.checkValidity() === true) {
+      setValidated(true);
+      editEmail(event);
+    }
+
+    setValidated(true);
+  };
+
+  
   return (
     <Modal show={true} onHide={() => navigate(-1)}>
       <Modal.Header closeButton>Изменить email</Modal.Header>

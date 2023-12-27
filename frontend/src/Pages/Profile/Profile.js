@@ -38,6 +38,7 @@ const Profile = () => {
         `/api/profiles/${user.username}/moments?page=${page}`
       ).then((res) => res.json());
       const json = await res;
+
       setPosts((posts) => [...posts, ...json.results]);
       setTotalCount(json.count);
       setPage((page) => page + 1);
@@ -48,14 +49,12 @@ const Profile = () => {
     console.log("trigger effect");
     console.log(posts.length, totalCount, loading);
 
-    return () => {
-      if (
-        loading &&
-        (!(posts.length === 0 && totalCount === 0) || posts.length < totalCount)
-      ) {
-        fetchMoments();
-      }
-    };
+    if (
+      loading &&
+      ((posts.length == 0 && totalCount === 0) || posts.length < totalCount)
+    ) {
+      fetchMoments();
+    }
   }, [loading]);
 
   useEffect(() => {
@@ -70,7 +69,7 @@ const Profile = () => {
     const scroll_t = e.target.documentElement.scrollTop;
     const inner_h = window.innerHeight;
 
-    if (scroll_h - (scroll_t + inner_h) < 1000) {
+    if (scroll_h - (scroll_t + inner_h) < 250) {
       console.log("trigger");
       setLoading(true);
     }
@@ -128,7 +127,7 @@ const Profile = () => {
         </Row>
 
         <GridPosts>
-          {posts.map((pst) => (
+          {posts.slice(0, totalCount).map((pst) => (
             <SquarePost id={pst.id} img_url={pst.image} />
           ))}
         </GridPosts>

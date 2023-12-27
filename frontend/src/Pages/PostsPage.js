@@ -48,7 +48,7 @@ const PostsPage = () => {
       <h2 className="text-center">Посты</h2>
       {posts.length > 0 ? (
         <GridPosts>
-          {posts.map((pst) => (
+          {posts.slice(0, totalCount).map((pst) => (
             <Post
               id={pst.id}
               img_url={pst.image}
