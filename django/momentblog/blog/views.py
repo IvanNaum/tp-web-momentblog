@@ -1,10 +1,30 @@
 from django.contrib.auth import get_user_model
+from rest_framework import status
 from rest_framework.generics import RetrieveAPIView, ListAPIView
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from blog.models import Moment, Comment
 from blog.pagination import MomentPagination
 from blog.serializers import ShortMomentSerializer, MomentSerializer, \
     CommentSerializer, UserSerializer, MomentImageSerializer
+
+
+class MomentCreate(APIView):
+
+    def post(self, request, format='json'):
+        serializer = MomentSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            if user:
+                return Response(status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# class MomentCreate(CreateAPIView):
+#     queryset = Moment.objects.all()
+#     serializer_class = MomentSerializer
 
 
 class MomentList(ListAPIView):

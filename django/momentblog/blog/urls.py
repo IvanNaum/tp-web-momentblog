@@ -1,10 +1,11 @@
 from django.urls import path
 
 from .views import MomentList, MomentDetail, CommentList, UserDetail, \
-    MomentImageList
+    MomentImageList, MomentCreate
 
 urlpatterns = [
     path('moments/', MomentList.as_view()),
+    path('moments/create', MomentCreate.as_view()),
     path('moments/<pk>', MomentDetail.as_view()),
     # path('moments/<pk>/like', ... .as_view()),
     path('moments/<moment_id>/comments', CommentList.as_view()),
