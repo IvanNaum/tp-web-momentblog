@@ -75,6 +75,26 @@ export const AuthProvider = () => {
     }
   };
 
+  let registerUser = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append("email", event.target.email.value);
+    formData.append("username", event.target.nickname.value);
+    formData.append("password", event.target.password1.value);
+    formData.append("photo", event.target.imagefile.files[0]);
+
+    let response = await fetch("/api/user/signup/", {
+      method: "POST",
+      body: formData,
+    });
+    if (response.status === 201) {
+      navigate("/login");
+    } else if (response.status === 400) {
+      console.warn(response.json());
+    }
+  };
+
   useEffect(() => {
     let upd_interval = setInterval(() => {
       if (authTokens) {
@@ -89,6 +109,7 @@ export const AuthProvider = () => {
     user: user,
     loginUser: loginUser,
     logoutUser: logoutUser,
+    registerUser: registerUser,
   };
 
   return (

@@ -26,6 +26,8 @@ from user.token import TokenView
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
 
+    path('api/user/', include("user.urls"), name='user_api'),
+
     # JWT api
     path('api/token/', TokenView.as_view(),
          name='token_obtain_pair'),

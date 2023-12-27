@@ -1,8 +1,12 @@
-import { Container, Form, Button, InputGroup } from "react-bootstrap";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { Button, Container, Form, InputGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
+import AuthContext from "../../context/AuthContext";
+
 const RegistrationPage = () => {
+  let { registerUser } = useContext(AuthContext);
+
   const [validated, setValidated] = useState(false);
 
   const handleSubmit = (event) => {
@@ -13,6 +17,7 @@ const RegistrationPage = () => {
     }
 
     setValidated(true);
+    registerUser(event);
   };
 
   return (
@@ -67,19 +72,6 @@ const RegistrationPage = () => {
             type="password"
             placeholder="Введите пароль..."
             aria-describedby="password1"
-            required
-          />
-          <Form.Control.Feedback type="invalid">
-            Введите корректный пароль
-          </Form.Control.Feedback>
-        </Form.Group>
-
-        <Form.Group className="mb-2" controlId="password2">
-          <Form.Label>Пароль ещё раз</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Введите пароль ещё раз..."
-            aria-describedby="password2"
             required
           />
           <Form.Control.Feedback type="invalid">
