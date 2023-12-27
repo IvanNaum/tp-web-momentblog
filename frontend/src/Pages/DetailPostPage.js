@@ -48,7 +48,13 @@ const DetailPostPage = () => {
           <h4>{post.title}</h4>
           <PostDescription text={String(post.description)} />
 
-          {loaded && <LikeBlock likes={postLikes} />}
+          {loaded && (
+            <LikeBlock
+              likes={postLikes}
+              id={id}
+              triggerURL={`/api/moments/${id}/like`}
+            />
+          )}
 
           <hr className="my-3" />
           <div className="">
@@ -58,17 +64,14 @@ const DetailPostPage = () => {
                 Добавить
               </Button>
             </InputGroup>
-            <div
-             className="overflow-auto" 
-             style={{ height: "300px" }}
-            >
+            <div className="overflow-auto" style={{ height: "300px" }}>
               {comments.map((cmt) => (
-                <div 
-                className="me-2">
+                <div className="me-2">
                   <Comment
                     nickname={cmt.username}
                     text={cmt.text}
                     likes={cmt.likes}
+                    id={cmt.id}
                   />
                   <hr className="my-1" />
                 </div>

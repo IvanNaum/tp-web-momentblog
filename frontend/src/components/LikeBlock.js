@@ -23,9 +23,21 @@ const LikeBlock = (props) => {
     setLikes((likes) => props.likes);
   }, []);
 
-  const toggleLike = (event) => {
+  const toggleLike = async (event) => {
     setClickedLike(!clicked_like);
     clicked_like ? setLikes(likes - 1) : setLikes(likes + 1);
+
+    let token = JSON.parse(localStorage.getItem("authTokens"));
+
+    let response = await fetch(props.triggerURL, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token.access}`,
+      },
+      body: JSON.stringify({
+        id: props.id,
+      }),
+    });
   };
 
   return (

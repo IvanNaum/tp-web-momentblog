@@ -7,7 +7,12 @@ const Comment = (props) => {
         <h6 className="mb-1">@{props.nickname}</h6>
         <p className="m-0">{props.text}</p>
       </div>
-      <LikeBlock min_likes likes={props.likes}/>
+      <LikeBlock
+        min_likes
+        likes={props.likes}
+        id={props.id}
+        triggerURL={`/api/comments/${props.id}/like`}
+      />
     </div>
   );
 };

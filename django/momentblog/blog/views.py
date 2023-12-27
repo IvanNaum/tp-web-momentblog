@@ -1,10 +1,11 @@
 from django.contrib.auth import get_user_model
 from rest_framework import status
 from rest_framework.generics import RetrieveAPIView, ListAPIView
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from blog.models import Moment, Comment
+from blog.models import Moment, Comment, CommentLike, MomentLike
 from blog.pagination import MomentPagination
 from blog.serializers import ShortMomentSerializer, MomentSerializer, \
     CommentSerializer, UserSerializer, MomentImageSerializer
@@ -53,3 +54,37 @@ class UserDetail(RetrieveAPIView):
     lookup_field = "username"
     queryset = get_user_model().objects.all()
     serializer_class = UserSerializer
+
+
+class CommentLikeView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request, comment_id):
+        comment = Comment.objects.filter(pk=comment_id).first()
+        if not comment:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        like = CommentLike.objects.filter(autor=request.user,
+                                          comment=comment)
+        if like:
+            like.delete()
+            return Response(status=status.HTTP_200_OK)
+
+        CommentLike(autor=request.user, comment=comment).save()
+        return Response(status=status.HTTP_200_OK)
+
+
+class MomentLikeView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request, moment_id):
+        moment = Moment.objects.filter(pk=moment_id).first()
+        if not moment:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        like = MomentLike.objects.filter(autor=request.user,
+                                         moment=moment)
+        if like:
+            like.delete()
+            return Response(status=status.HTTP_200_OK)
+
+        MomentLike(autor=request.user, moment=moment).save()
+        return Response(status=status.HTTP_200_OK)
