@@ -110,6 +110,7 @@ export const AuthProvider = () => {
     loginUser: loginUser,
     logoutUser: logoutUser,
     registerUser: registerUser,
+    updateToken: updateToken,
   };
 
   return (
